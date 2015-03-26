@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+}
+
+jar {
+	manifest {
+		attributes	'Implementation-Title': archivesBaseName,
+					'Implementation-Version': version
+	}
+}
