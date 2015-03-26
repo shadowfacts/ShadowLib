@@ -15,3 +15,9 @@ jar {
 					'Implementation-Version': version
 	}
 }
+
+task sourcesJar(type: Jar) {
+	from sourceSets.main.allSource
+	classifier = 'source'
+}
+}
