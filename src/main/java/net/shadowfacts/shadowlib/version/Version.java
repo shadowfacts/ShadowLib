@@ -252,8 +252,7 @@ public class Version {
 	 * @return
 	 */
 	public Version removeLabel() {
-		label = "";
-		return this;
+		return setLabel("");
 	}
 
 
@@ -298,4 +297,24 @@ public class Version {
 		return s;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Version) {
+
+			Version other = (Version)obj;
+
+			if (other.major == major && other.minor == minor && other.patch == patch) {
+				if (other.label != null && label != null) {
+					if (other.label.equals(label)) {
+						return true;
+					}
+				} else {
+					return true;
+				}
+			}
+
+		}
+
+		return false;
+	}
 }
