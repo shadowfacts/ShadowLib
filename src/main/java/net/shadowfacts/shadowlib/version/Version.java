@@ -85,12 +85,11 @@ public class Version {
 	}
 
 	/**
-	 * Duplicates a {@link Version}
-	 * @param v The original {@link Version}
+	 * Creates a new {@link Version} from the current {@link Version} object
 	 * @return The duplicated {@link Version}
 	 */
-	public Version copy(Version v) {
-		return new Version(v.major, v.minor, v.patch, v.label);
+	public Version copy() {
+		return new Version(major, minor, patch, label);
 	}
 
 	/**
@@ -236,6 +235,16 @@ public class Version {
 	 */
 	public Version setPatch(int patch) {
 		return setPatch(patch, false);
+	}
+
+	/**
+	 * Sets the label
+	 * @param label
+	 * @return
+	 */
+	public Version setLabel(String label) {
+		this.label = label;
+		return this;
 	}
 
 	/**
