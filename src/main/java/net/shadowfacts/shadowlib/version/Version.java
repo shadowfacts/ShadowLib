@@ -285,6 +285,13 @@ public class Version {
 	}
 
 	/**
+	 * @return If the {@link Version} has a label
+	 */
+	public boolean hasLabel() {
+		return label != null && !label.equals("");
+	}
+
+	/**
 	 * Converts a {@link Version} object to a {@link String}
 	 * @return A Semantic Version string, will be in the format of X.Y.Z or X.Y.Z-LABEL
 	 */
@@ -304,7 +311,7 @@ public class Version {
 			Version other = (Version)obj;
 
 			if (other.major == major && other.minor == minor && other.patch == patch) {
-				if (other.label != null && label != null) {
+				if (other.hasLabel() && hasLabel()) {
 					if (other.label.equals(label)) {
 						return true;
 					}
