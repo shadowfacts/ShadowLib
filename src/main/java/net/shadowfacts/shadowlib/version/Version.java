@@ -304,6 +304,11 @@ public class Version {
 		return s;
 	}
 
+	/**
+	 * Check if the current {@link Version} is equal to obj
+	 * @param obj
+	 * @return
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Version) {
