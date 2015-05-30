@@ -14,7 +14,7 @@ public class InvalidVersionException extends RuntimeException {
 	}
 
 	/**
-	 * Conveniece constructor, just passes the result of String.format(msg, args) to the default constructor
+	 * Convenience constructor, just passes the result of String.format(msg, args) to the default constructor
 	 * @param msg The message
 	 * @param args The arguments to be passed into String.format
 	 */
