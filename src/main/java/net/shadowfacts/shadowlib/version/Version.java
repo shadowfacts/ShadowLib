@@ -1,5 +1,7 @@
 package net.shadowfacts.shadowlib.version;
 
+import java.util.ArrayList;
+
 /**
  * Wrapper for a Semantic Version.
  * @see <a href="http://semver.org/">http://semver.org</a>
@@ -18,7 +20,7 @@ public class Version {
 	 * @param v The version String to convert to an object. Should be in the format of X.Y.Z or X.Y.Z-LABEL
 	 */
 	public Version(String v) {
-		String[] arr = v.split("-");
+		String[] arr = v.split("\\-");
 
 		String[] arr2 = arr[0].split("\\.");
 
@@ -41,9 +43,9 @@ public class Version {
 
 			label = arr[1];
 
-		} else { //  There are multiple labels
+		} else if (arr.length < 2) { //  There are multiple labels
 
-			for (int i = 1; i < arr.length; i++) {
+			for (int i = 1; i < arr.length - 1; i++) {
 
 				if (arr[i] == null) {
 					throw new InvalidVersionException("Cannot create Version with null label");
@@ -285,14 +287,14 @@ public class Version {
 	}
 
 	/**
-	 * @return If the {@link Version} has a label
+	 * @return If the {@link net.shadowfacts.shadowlib.version.Version} has a label
 	 */
 	public boolean hasLabel() {
 		return label != null && !label.equals("");
 	}
 
 	/**
-	 * Converts a {@link Version} object to a {@link String}
+	 * Converts a {@link net.shadowfacts.shadowlib.version.Version} object to a {@link java.lang.String}
 	 * @return A Semantic Version string, will be in the format of X.Y.Z or X.Y.Z-LABEL
 	 */
 	@Override
@@ -305,7 +307,7 @@ public class Version {
 	}
 
 	/**
-	 * Check if the current {@link Version} is equal to obj
+	 * Check if the current {@link net.shadowfacts.shadowlib.version.Version} is equal to obj
 	 * @param obj
 	 * @return
 	 */
@@ -328,5 +330,40 @@ public class Version {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check if this {@link net.shadowfacts.shadowlib.version.Version} is greater than the other one
+	 * @param other
+	 * @return
+	 */
+	public boolean greaterThan(Version other) {
+		if (major > other.major) {
+			return true;
+		} if (major == other.major && minor > other.minor) {
+			return true;
+		} if (major == other.major && minor == other.minor && patch > other.patch) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if this {@link net.shadowfacts.shadowlib.version.Version} is less than the other one
+	 * @param other
+	 * @return
+	 */
+	public boolean lessThan(Version other) {
+		return other.greaterThan(this);
+	}
+
+	/**
+	 * Check if the current version is valid for the matcher string using {@link net.shadowfacts.shadowlib.version.VersionMatcher}
+	 * @param matcherString
+	 * @return
+	 */
+	public boolean validFor(String matcherString) {
+		return VersionMatcher.matches(matcherString, this);
 	}
 }

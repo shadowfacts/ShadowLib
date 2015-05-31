@@ -1,15 +1,17 @@
 package net.shadowfacts.shadowlib.version;
 
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author shadowfacts
  */
 public class VersionTest {
+
+	@Test
+	public void canConstructVersion() {
+		assertNotNull(new Version("1.2.3-alpha"));
+	}
 
 	@Test
 	public void canCopyVersion() {
@@ -153,6 +155,20 @@ public class VersionTest {
 		Version v3 = new Version("3.2.1-beta");
 		assertTrue(v1.equals(v2));
 		assertFalse(v1.equals(v3));
+	}
+
+	@Test
+	public void canCompareUsingGreaterThan() {
+		Version v1 = new Version("1.2.3");
+		Version v2 = new Version("2.0.0");
+		Version v3 = new Version("1.3.0");
+		Version v4 = new Version("1.2.4");
+		assertTrue(v2.greaterThan(v1));
+		assertTrue(v3.greaterThan(v1));
+		assertTrue(v4.greaterThan(v1));
+		assertTrue(v1.lessThan(v2));
+		assertTrue(v1.lessThan(v3));
+		assertTrue(v1.lessThan(v4));
 	}
 
 }
