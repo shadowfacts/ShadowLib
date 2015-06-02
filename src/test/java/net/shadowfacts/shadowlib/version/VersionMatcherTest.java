@@ -27,7 +27,7 @@ public class VersionMatcherTest {
 	}
 
 	@Test
-	public void canMatchWWithGreaterThan() {
+	public void canMatchWithGreaterThan() {
 		VersionMatcher matcher = new VersionMatcher("^1.2.3");
 		Version v1 = new Version("2.0.0");
 		Version v2 = new Version("1.3.0");
@@ -36,7 +36,43 @@ public class VersionMatcherTest {
 		assertTrue(matcher.matches(v1));
 		assertTrue(matcher.matches(v2));
 		assertTrue(matcher.matches(v3));
-		assertFalse(matcher.matches(v4));
 	}
 
+	@Test
+	public void canMatchWithLessThan() {
+		VersionMatcher matcher = new VersionMatcher("<1.2.3");
+		Version v1 = new Version("2.0.0");
+		Version v2 = new Version("1.3.0");
+		Version v3 = new Version("1.2.4");
+		Version v4 = new Version("1.0.0");
+		assertFalse(matcher.matches(v1));
+		assertFalse(matcher.matches(v2));
+		assertFalse(matcher.matches(v3));
+	}
+
+	@Test
+	public void canMatchWithGreaterThanOrEqualTo() {
+		VersionMatcher matcher = new VersionMatcher(">=1.2.3");
+		Version v1 = new Version("2.0.0");
+		Version v2 = new Version("1.3.0");
+		Version v3 = new Version("1.2.4");
+		Version v4 = new Version("1.2.3");
+		assertTrue(matcher.matches(v1));
+		assertTrue(matcher.matches(v2));
+		assertTrue(matcher.matches(v3));
+		assertTrue(matcher.matches(v4));
+	}
+
+	@Test
+	public void canMatchWithLessThanOrEqualTo() {
+		VersionMatcher matcher = new VersionMatcher("<=1.2.3");
+		Version v1 = new Version("2.0.0");
+		Version v2 = new Version("1.3.0");
+		Version v3 = new Version("1.2.4");
+		Version v4 = new Version("1.2.3");
+		assertFalse(matcher.matches(v1));
+		assertFalse(matcher.matches(v2));
+		assertFalse(matcher.matches(v3));
+		assertFalse(matcher.matches(v4));
+	}
 }

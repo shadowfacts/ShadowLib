@@ -340,9 +340,9 @@ public class Version {
 	public boolean greaterThan(Version other) {
 		if (major > other.major) {
 			return true;
-		} if (major == other.major && minor > other.minor) {
+		} else if (major == other.major && minor > other.minor) {
 			return true;
-		} if (major == other.major && minor == other.minor && patch > other.patch) {
+		} else if (major == other.major && minor == other.minor && patch > other.patch) {
 			return true;
 		}
 

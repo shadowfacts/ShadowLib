@@ -43,8 +43,14 @@ public class VersionMatcher {
 			}
 		}
 
-		if (matcherString.charAt(0) == '^') {
+		if (matcherString.startsWith(">=")) {
+			return  matchesGreaterThanOrEqualTo(matcherString.substring(2), v);
+		} else if (matcherString.startsWith("<=")) {
+			return matchesLessThanOrEqualTo(matcherString.substring(2), v);
+		} else if (matcherString.startsWith("^") || matcherString.startsWith(">")) {
 			return matchesGreaterThan(matcherString.substring(1), v);
+		} else if (matcherString.startsWith("<")) {
+			return matchesLessThan(matcherString.substring(1), v);
 		}
 
 		boolean majorValid = false;
@@ -112,6 +118,20 @@ public class VersionMatcher {
 
 	private static boolean matchesGreaterThan(String s, Version v) {
 		return v.greaterThan(new Version(s));
+	}
+
+	private static boolean matchesLessThan(String s, Version v) {
+		return v.lessThan(new Version(s));
+	}
+
+	private static boolean matchesGreaterThanOrEqualTo(String s, Version v) {
+		Version other = new Version(s);
+		return v.equals(other) || v.greaterThan(other);
+	}
+
+	private static boolean matchesLessThanOrEqualTo(String s, Version v) {
+		Version other = new Version(s);
+		return v.equals(other) || v.lessThan(other);
 	}
 
 }
