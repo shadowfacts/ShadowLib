@@ -3,6 +3,7 @@ package net.shadowfacts.shadowlib.util;
 import java.io.File;
 import java.util.ArrayList;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
@@ -17,6 +18,8 @@ public class FileUtilsTest {
         FileUtils.forEachInDirectory(new File("/"), (File f) -> {
             filenames.add(f.getName());
         });
+        System.out.println(filenames);
+        assertFalse(filenames.isEmpty());
     }
 
 }
