@@ -3,6 +3,16 @@ package net.shadowfacts.shadowlib.version;
 
 
 /**
+ * Used to match version matching strings (e.g. "1.2.x") with versions.
+ * <b>Example:</b>
+ * <code>
+ *     VersionMatcher.matches("1.2.x", new Version("1.2.3"));
+ * </code>
+ * returns true whereas
+ * <code>
+ *     VersionMatcher.matches("1.2.x", new Version("1.3.4"));
+ * </code>
+ * returns false
  * @author shadowfacts
  */
 public class VersionMatcher {
