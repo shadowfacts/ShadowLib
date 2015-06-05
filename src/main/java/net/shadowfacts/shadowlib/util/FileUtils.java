@@ -9,6 +9,12 @@ import java.util.function.Consumer;
  */
 public class FileUtils {
 
+	/**
+	 * Iterates over every {@link java.io.File} in a directory and executes the specified action for each one
+	 * @param dir The directory to iterate over
+	 * @param consumer A lambda to be execute for each {@link java.io.File}
+	 *                 Takes one argument, a {@link java.io.File}
+	 */
 	public static void forEachInDirectory(File dir, Consumer<File> consumer) {
 		File[] dirListing = dir.listFiles();
 		if (dirListing != null) {
