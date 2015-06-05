@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.function.Consumer;
 
 /**
- * Various utilities realted to the file system.
+ * Various utilities related to the file system.
  * @author shadowfacts
  */
 public class FileUtils {
