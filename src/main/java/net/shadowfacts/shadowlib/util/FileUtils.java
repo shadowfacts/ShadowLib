@@ -62,7 +62,13 @@ public class FileUtils {
 		out.transferFrom(in, 0, Long.MAX_VALUE);
 	}
 
-	public static void unzipFile(String zip, String outputFolder) throws IOException{
+	/**
+	 * Unzips the specified file to the specified directory
+	 * @param zip
+	 * @param outputFolder
+	 * @throws IOException
+	 */
+	public static void unzipFile(String zip, String outputFolder) throws IOException {
 		byte[] buffer = new byte[1024];
 		File folder = new File(outputFolder);
 		if (!folder.exists()) {
@@ -94,6 +100,24 @@ public class FileUtils {
 
 		in.closeEntry();
 		in.close();
+	}
+
+	/**
+	 * Recursively deletes all files and folders inside the specified folder (including the specified folder itself)
+	 * @param folder
+	 */
+	public static void deleteFolder(File folder) {
+		File[] files = folder.listFiles();
+		if (files != null) {
+			for (File f : files) {
+				if (f.isDirectory()) {
+					deleteFolder(f);
+				} else {
+					f.delete();
+				}
+			}
+		}
+		folder.delete();
 	}
 
 }
