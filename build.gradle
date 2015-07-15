@@ -5,7 +5,7 @@ apply plugin: 'idea'
 
 if (System.getenv().BUILD_NUMBER != null) {
 	version += "-build-" + System.getenv().BUILD_NUMBER
-} 
+}
 
 repositories {
 	mavenCentral()
