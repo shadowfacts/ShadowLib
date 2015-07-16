@@ -24,13 +24,13 @@ public class Logger {
 		String chan = "[" + this.channel + "]";
 		switch (level) {
 			case DEBUG:
-				if (verbose) System.out.println(chan + msg);
+				if (verbose) System.out.println(chan + msg); break;
 			case INFO:
-				if (verbose) System.out.println(chan + msg);
+				if (verbose) System.out.println(chan + msg); break;
 			case WARN:
-				System.err.println(chan + msg);
+				System.err.println(chan + msg); break;
 			case ERROR:
-				System.err.println(chan + msg);
+				System.err.println(chan + msg); break;
 		}
 		return this;
 	}
