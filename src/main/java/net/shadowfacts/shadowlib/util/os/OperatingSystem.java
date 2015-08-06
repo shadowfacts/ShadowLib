@@ -1,4 +1,4 @@
-package net.shadowfacts.shadowlib.util;
+package net.shadowfacts.shadowlib.util.os;
 
 
 /**
