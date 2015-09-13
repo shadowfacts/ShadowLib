@@ -11,7 +11,6 @@ public class ReflectUtils {
 
 	private static HashMap<String, Class> nameClassMap = new HashMap<>();
 	private static HashMap<FieldIdentifier, Field> fieldMap = new HashMap<>();
-	private static HashMap<MethodIdentifier, Method> methodMap = new HashMap<>();
 
 	public static Class getClass(String name) throws ClassNotFoundException {
 		if (nameClassMap.containsKey(name)) {
