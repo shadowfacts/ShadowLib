@@ -17,9 +17,11 @@ public enum OperatingSystem {
 		this.names = names;
 	}
 
-	public static OperatingSystem getOS() {
-		String name = System.getProperty("os.name");
+	public static OperatingSystem getSystemOS() {
+		return getOS(System.getProperty("os.name"));
+	}
 
+	public static OperatingSystem getOS(String name) {
 		for (OperatingSystem os : values()) {
 			for (String s : os.names) {
 				if (name.toLowerCase().contains(s)) {
