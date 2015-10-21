@@ -1,7 +1,5 @@
 package net.shadowfacts.shadowlib.util;
 
-import net.shadowfacts.shadowlib.ShadowLib;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,13 +27,13 @@ public class ClasspathUtils {
 			addURL.setAccessible(true);
 			addURL.invoke(urlClassLoader, url);
 		} catch (NoSuchMethodException e) {
-			ShadowLib.log.error("URLClassLoader#addURL did not exist! This is a problem, report this immediately!");
+			System.err.println("URLClassLoader#addURL did not exist! This is a problem, report this immediately!");
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			ShadowLib.log.error("Could not access URLClassLoader#addURL! This is a problem, report this immediately!");
+			System.err.println("Could not access URLClassLoader#addURL! This is a problem, report this immediately!");
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			ShadowLib.log.error("URLClassLoader#addURL was invoked on the wrong target! This is a problem, report this immediately!");
+			System.err.println("URLClassLoader#addURL was invoked on the wrong target! This is a problem, report this immediately!");
 			e.printStackTrace();
 		}
 	}
@@ -72,7 +70,7 @@ public class ClasspathUtils {
 			return tempFile;
 
         } catch (IOException e) {
-			ShadowLib.log.error("Error creating the temp file!");
+			System.err.println("Error creating the temp file!");
 			e.printStackTrace();
 		}
 		return null;

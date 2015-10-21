@@ -1,12 +1,6 @@
 package net.shadowfacts.shadowlib.util;
 
-import net.shadowfacts.shadowlib.log.LogLevel;
-import net.shadowfacts.shadowlib.log.Logger;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * @author shadowfacts
@@ -14,14 +8,11 @@ import java.io.InputStreamReader;
 public class StreamRedirect extends Thread {
 
 	private InputStream in;
+	private OutputStream out;
 
-	private Logger log;
-	private LogLevel level;
-
-	public StreamRedirect(InputStream in, Logger log, LogLevel level) {
+	public StreamRedirect(InputStream in, OutputStream out) {
 		this.in = in;
-		this.log = log;
-		this.level = level;
+		this.out = out;
 	}
 
 	@Override
@@ -31,7 +22,7 @@ public class StreamRedirect extends Thread {
 			BufferedReader reader = new BufferedReader(streamReader);
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				log.log(level, line);
+				out.write(reader.readLine().getBytes());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

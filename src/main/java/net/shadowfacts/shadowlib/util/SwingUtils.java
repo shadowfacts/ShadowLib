@@ -1,15 +1,11 @@
 package net.shadowfacts.shadowlib.util;
 
-import net.shadowfacts.shadowlib.log.Logger;
-
 import javax.swing.*;
 
 /**
  * @author shadowfacts
  */
 public class SwingUtils {
-
-	private static final Logger log = new Logger("ShadowLib|SwingUtils");
 
 	public static final String systemLaf = UIManager.getSystemLookAndFeelClassName();
 	public static final String crossPlatformLaf = UIManager.getCrossPlatformLookAndFeelClassName();
@@ -23,16 +19,16 @@ public class SwingUtils {
 				frame.pack();
 			}
 		} catch (ClassNotFoundException e) {
-			log.error("Could not find Look and Feel class!");
+			System.err.println("Could not find Look and Feel class!");
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			log.error("Could not instantiate Look and Feel class!");
+			System.err.println("Could not instantiate Look and Feel class!");
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			log.error("Could not access Look and Feel class!");
+			System.err.println("Could not access Look and Feel class!");
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			log.error("This Look and Feel is not supported!");
+			System.err.println("This Look and Feel is not supported!");
 			e.printStackTrace();
 		}
 	}
@@ -45,7 +41,7 @@ public class SwingUtils {
 				frame.pack();
 			}
 		} catch (UnsupportedLookAndFeelException e) {
-			log.error("This Look and Feel is not supported!");
+			System.err.println("This Look and Feel is not supported!");
 			e.printStackTrace();
 		}
 	}
