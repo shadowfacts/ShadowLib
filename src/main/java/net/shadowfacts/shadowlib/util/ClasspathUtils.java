@@ -46,7 +46,7 @@ public class ClasspathUtils {
 	 */
 	public static void addFileToClasspath(File file) {
 		try {
-			addURLToClasspath(file.toURL());
+			addURLToClasspath(file.toURI().toURL());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
