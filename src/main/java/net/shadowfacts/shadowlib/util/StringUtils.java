@@ -26,4 +26,8 @@ public class StringUtils {
 		return ret;
 	}
 
+	public static int count(String str, String countStr) {
+		return str.length() - str.replace(countStr, "").length();
+	}
+
 }
