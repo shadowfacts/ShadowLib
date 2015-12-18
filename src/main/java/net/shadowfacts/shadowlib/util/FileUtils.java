@@ -55,4 +55,10 @@ public class FileUtils {
 		return null;
 	}
 
+	public static void checkCreateDirs(File... dirs) {
+		for (File dir : dirs) {
+			if (!dir.exists()) dir.mkdirs();
+		}
+	}
+
 }
