@@ -19,7 +19,6 @@ public class VersionMatcherTest {
 		VersionMatcher m2 = new VersionMatcher("1.2.*");
 		Version v1 = new Version("1.2.3");
 		Version v2 = new Version("1.3.2");
-		boolean test = m1.matches(v1);
 
 		assertTrue(m1.matches(v1));
 		assertTrue(m2.matches(v1));
@@ -36,6 +35,7 @@ public class VersionMatcherTest {
 		assertTrue(matcher.matches(v1));
 		assertTrue(matcher.matches(v2));
 		assertTrue(matcher.matches(v3));
+		assertFalse(matcher.matches(v4));
 	}
 
 	@Test
@@ -48,6 +48,7 @@ public class VersionMatcherTest {
 		assertFalse(matcher.matches(v1));
 		assertFalse(matcher.matches(v2));
 		assertFalse(matcher.matches(v3));
+		assertTrue(matcher.matches(v4));
 	}
 
 	@Test

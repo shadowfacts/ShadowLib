@@ -1,17 +1,7 @@
 package net.shadowfacts.shadowlib.util;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.channels.Channel;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.function.Consumer;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 /**
  * Various utilities related to the file system.
@@ -36,62 +26,33 @@ public class FileUtils {
 		}
 	}
 
-	/**
-	 * Unzips the specified file to the specified directory
-	 * @param zip
-	 * @param outputFolder
-	 * @throws IOException
-	 */
-	public static void unzipFile(String zip, String outputFolder) throws IOException {
-		byte[] buffer = new byte[1024];
-		File folder = new File(outputFolder);
-		if (!folder.exists()) {
-			folder.mkdirs();
-		}
-
-		ZipInputStream in = new ZipInputStream(new FileInputStream(zip));
-
-		ZipEntry entry  = in.getNextEntry();
-		while (entry != null) {
-			if (!entry.isDirectory()) {
-				String name = entry.getName();
-				File newFile = new File(outputFolder + "/" + name);
-
-				new File(newFile.getParent()).mkdirs();
-
-				FileOutputStream out = new FileOutputStream(newFile);
-
-				int read;
-				while ((read = in.read(buffer)) > 0) {
-					out.write(buffer, 0, read);
-				}
-
-				out.close();
-			}
-
-			entry = in.getNextEntry();
-		}
-
-		in.closeEntry();
-		in.close();
-	}
 
 	/**
 	 * Recursively deletes all files and folders inside the specified folder (including the specified folder itself)
-	 * @param folder
+	 * @param dir
 	 */
-	public static void deleteFolder(File folder) {
-		File[] files = folder.listFiles();
+	public static void deleteDirRecursive(File dir) {
+		File[] files = dir.listFiles();
 		if (files != null) {
 			for (File f : files) {
 				if (f.isDirectory()) {
-					deleteFolder(f);
+					deleteDirRecursive(f);
 				} else {
 					f.delete();
 				}
 			}
 		}
-		folder.delete();
+		dir.delete();
+	}
+
+	/**
+	 * Creates the given directory if not present
+	 * @param dir The directory
+	 * @return {@code null} if the directory already exists or the result of {@link File#mkdirs()} if it doesn't
+	 */
+	public static Boolean checkCreateDir(File dir) {
+		if (!dir.exists()) return dir.mkdirs();
+		return null;
 	}
 
 }

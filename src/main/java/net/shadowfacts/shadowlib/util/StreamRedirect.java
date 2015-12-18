@@ -17,12 +17,10 @@ public class StreamRedirect extends Thread {
 
 	@Override
 	public void run() {
-		try {
-			InputStreamReader streamReader = new InputStreamReader(in);
-			BufferedReader reader = new BufferedReader(streamReader);
-			String line = null;
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+			String line;
 			while ((line = reader.readLine()) != null) {
-				out.write(reader.readLine().getBytes());
+				out.write(line.getBytes());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -24,7 +24,7 @@ public class VersionMatcher {
 	private String matcherString;
 
 	/**
-	 * Constructor used to create a new reusable {@link net.shadowfacts.shadowlib.version.VersionMatcher}
+	 * Constructor used to create a new reusable {@link VersionMatcher}
 	 * @param matcherString
 	 */
 	public VersionMatcher(String matcherString) {
@@ -32,7 +32,7 @@ public class VersionMatcher {
 	}
 
 	/**
-	 * Checks if the {@link net.shadowfacts.shadowlib.version.Version} is valid for the matcher {@link java.lang.String} passed to the constructor
+	 * Checks if the {@link Version} is valid for the matcher {@link String} passed to the constructor
 	 * @param v
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class VersionMatcher {
 	}
 
 	/**
-	 * Check if the {@link net.shadowfacts.shadowlib.version.Version} is valid for the matcher {@link java.lang.String}
+	 * Check if the {@link Version} is valid for the matcher {@link String}
 	 * @param matcherString
 	 * @param v
 	 * @return
@@ -68,9 +68,9 @@ public class VersionMatcher {
 		boolean patchValid = false;
 		boolean labelValid = false;
 
-		String major = "";
-		String minor = "";
-		String patch = "";
+		String major;
+		String minor;
+		String patch;
 		String label = "";
 
 		String[] arr = matcherString.split("\\-");
@@ -93,7 +93,6 @@ public class VersionMatcher {
 			}
 
 			label = arr[1];
-
 		} else if (arr.length > 2) { //  There are multiple labels
 
 			for (int i = 1; i < arr.length - 1; i++) {
@@ -120,7 +119,7 @@ public class VersionMatcher {
 		if (!minorValid) minorValid = (Integer.parseInt(minor) == v.getMinor());
 		if (!patchValid) patchValid = (Integer.parseInt(patch) == v.getPatch());
 
-		if (!labelValid) labelValid = !v.hasLabel() && (label == null || label.equals(""));
+		labelValid = !v.hasLabel() && label.isEmpty();
 		if (!labelValid) labelValid = label.equals(v.getLabel());
 
 		return majorValid && minorValid && patchValid && labelValid;

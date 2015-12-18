@@ -1,7 +1,5 @@
 package net.shadowfacts.shadowlib.version;
 
-import java.util.ArrayList;
-
 /**
  * Wrapper for a Semantic Version.
  * @see <a href="http://semver.org/">http://semver.org</a>
@@ -37,7 +35,7 @@ public class Version {
 
 			if (arr[1] == null) {
 				throw new InvalidVersionException("Cannot create Version with null label");
-			} else if (arr[1].equals("")) {
+			} else if (arr[1].isEmpty()) {
 				throw new InvalidVersionException("Cannot create Version with empty label");
 			}
 
@@ -287,27 +285,27 @@ public class Version {
 	}
 
 	/**
-	 * @return If the {@link net.shadowfacts.shadowlib.version.Version} has a label
+	 * @return If the {@link Version} has a label
 	 */
 	public boolean hasLabel() {
-		return label != null && !label.equals("");
+		return label != null && !label.isEmpty();
 	}
 
 	/**
-	 * Converts a {@link net.shadowfacts.shadowlib.version.Version} object to a {@link java.lang.String}
+	 * Converts a {@link Version} object to a {@link String}
 	 * @return A Semantic Version string, will be in the format of X.Y.Z or X.Y.Z-LABEL
 	 */
 	@Override
 	public String toString() {
 		String s = String.format("%d.%d.%d", major, minor, patch);
-		if (label != null && !label.equals("")) {
+		if (hasLabel()) {
 			s += String.format("-%s", label);
 		}
 		return s;
 	}
 
 	/**
-	 * Check if the current {@link net.shadowfacts.shadowlib.version.Version} is equal to obj
+	 * Check if the current {@link Version} is equal to obj
 	 * @param obj
 	 * @return
 	 */
@@ -333,7 +331,7 @@ public class Version {
 	}
 
 	/**
-	 * Check if this {@link net.shadowfacts.shadowlib.version.Version} is greater than the other one
+	 * Check if this {@link Version} is greater than the other one
 	 * @param other
 	 * @return
 	 */
