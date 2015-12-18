@@ -1,10 +1,8 @@
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-
-if (System.getenv().BUILD_NUMBER != null) {
-	version += "-build-" + System.getenv().BUILD_NUMBER
+plugins {
+	id "java"
+	id "maven"
+	id "idea"
+	id "eclipse"
 }
 
 repositories {
@@ -30,10 +28,4 @@ task sourcesJar(type: Jar) {
 artifacts {
 	archives jar
 	archives sourcesJar
-}
-
-uploadArchives {
-	repositories.mavenDeployer {
-		repository(url: "file:///maven/")
-	}
 }
