@@ -32,6 +32,15 @@ public class FileUtils {
 	 * @param dir
 	 */
 	public static void deleteDirRecursive(File dir) {
+		deleteDirContentsRecursive(dir);
+		dir.delete();
+	}
+
+	/**
+	 * Recursively deletes all files and folders inside the specified folder (<b>not</b> including the specified folder)
+	 * @param dir
+	 */
+	public static void deleteDirContentsRecursive(File dir) {
 		File[] files = dir.listFiles();
 		if (files != null) {
 			for (File f : files) {
@@ -42,7 +51,6 @@ public class FileUtils {
 				}
 			}
 		}
-		dir.delete();
 	}
 
 	/**
