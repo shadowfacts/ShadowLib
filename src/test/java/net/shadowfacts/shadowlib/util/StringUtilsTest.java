@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class StringUtilsTest {
 
-	Test
+	@Test
 	public void testCount() {
 		assertEquals(StringUtils.count("hello world", "l"), 3);
 	}
