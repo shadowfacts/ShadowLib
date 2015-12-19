@@ -13,12 +13,12 @@ import java.util.function.Supplier;
 public class OptionalsTest {
 
 	@Test
-	public void testOrElse() {
+	public void testFallback() {
 		Optional<String> optional1 = Optional.of("Optional 1");
 		Optional<String> optional2 = Optional.of("Optional 2");
 
-		assertTrue(Optionals.orElse(optional1, optional2) == optional1);
-		assertTrue(Optionals.orElse(Optional.empty(), optional2) == optional2);
+		assertTrue(Optionals.fallback(optional1, optional2) == optional1);
+		assertTrue(Optionals.fallback(Optional.empty(), optional2) == optional2);
 	}
 
 	@Test

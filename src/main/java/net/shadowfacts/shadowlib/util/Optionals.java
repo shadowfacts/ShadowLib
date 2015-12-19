@@ -9,7 +9,7 @@ import java.util.function.Supplier;
  */
 public class Optionals {
 
-	public static <T> Optional<T> orElse(Optional<T> maybe, Optional<T> fallback) {
+	public static <T> Optional<T> fallback(Optional<T> maybe, Optional<T> fallback) {
 		if (maybe.isPresent()) {
 			return maybe;
 		} else {
