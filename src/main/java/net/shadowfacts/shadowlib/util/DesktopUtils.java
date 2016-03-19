@@ -1,6 +1,8 @@
 package net.shadowfacts.shadowlib.util;
 
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,6 +30,11 @@ public class DesktopUtils {
 
 	public static void openWebpage(String str) throws URISyntaxException{
 		openWebpage(new URI(str));
+	}
+
+	public static void copyToClipboard(String str) {
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		clipboard.setContents(new StringSelection(str), (clipboard1, contents) -> {});
 	}
 
 }
