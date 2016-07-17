@@ -22,7 +22,7 @@ jar {
 
 task sourcesJar(type: Jar) {
 	from sourceSets.main.allSource
-	classifier = 'source'
+	classifier = 'sources'
 }
 
 artifacts {
