@@ -16,4 +16,10 @@ public class EnumUtilsTest {
 		assertEquals(EnumUtils.getNextValue(TestEnum.THING2), TestEnum.THING1);
 	}
 
+	@Test
+	public void testGetPrevValue() {
+		assertEquals(EnumUtils.getPreviousValue(TestEnum.THING2), TestEnum.THING1);
+		assertEquals(EnumUtils.getPreviousValue(TestEnum.THING1), TestEnum.THING2);
+	}
+
 }
