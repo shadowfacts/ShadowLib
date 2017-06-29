@@ -29,3 +29,11 @@ artifacts {
 	archives jar
 	archives sourcesJar
 }
+
+uploadArchives {
+ 	repositories.mavenDeployer {
+ 		repository(url: "http://archiva.shadowfacts.net/repository/local/") {
+ 			authentication(userName: project.hasProperty("mavenUser") ? project.mavenUser : System.getenv("mavenUser"), password: project.hasProperty("mavenPassword") ? project.mavenPassword : System.getenv("mavenPassword"))
+ 		}
+ 	}
+ }
